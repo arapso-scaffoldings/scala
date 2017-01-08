@@ -2,6 +2,9 @@ package pl.arapso.scaffoldings.scala.tutor.ip
 
 import java.io.{BufferedWriter, File, FileWriter}
 
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.{FileSystem, Path}
+
 import scala.util.Random
 
 object App {
@@ -9,19 +12,20 @@ object App {
   val MaxSize: Int = 10 * 1024
 
   def main(args: Array[String]) {
-    for(_ <- 1 to 100) genIpFile
+    for(i <- 1 to 100) genIpFile(i)
+
+  }
+
+  def genIpFile(no: Int) = {
+    val maxFileSize = fileSize
+    println(s"Bytes to write $maxFileSize")
+    val writer = new IpFileWriter(f"/tmp/scala/IpGenerator/part-$no%06d.txt", maxFileSize)
+    while(writer << IpGenerator.genIp){}
+    writer.close
   }
 
   def fileSize(): Long = {
     scala.util.Random.nextInt(MaxSize - MinSize) + MinSize
-  }
-
-  def genIpFile = {
-    val maxFileSize = fileSize
-    println(s"Bytes to write $maxFileSize")
-    val writer = new IpFileWriter("/tmp/scala/IpGenerator/ips.txt", maxFileSize)
-    while(writer << IpGenerator.genIp){}
-    writer.close
   }
 }
 
@@ -56,6 +60,9 @@ class IpFileWriter(filePath: String, maxFileSize: Long) {
 
   def close = {
     fileWriter.close()
+  }
+
+  def addFileSizeToFileName = {
     val newFilePrefix = filePath.substring(0, filePath.lastIndexOf("."))
     val newFileExtension = filePath.substring(filePath.lastIndexOf("."), filePath.length)
     val oldFile = new File(filePath)
