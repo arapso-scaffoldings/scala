@@ -30,21 +30,27 @@ object SplitFilesToEqualsSize {
       filesToMerge += FileMeta.parse(files)
     }
 
-    val maxSize = 50 * 1024l
+    val maxSize = 6 * 1024l // want to get 8
 
     filesToMerge.sortBy(_.fileNo)
     val iter = filesToMerge.iterator
     while(iter.hasNext) {
       var currentSize = 0l
       val filesToMerge = ListBuffer[FileMeta]()
+      val first = iter.next()
+      currentSize += first.size
       while(currentSize < maxSize && iter.hasNext) {
         val nextFile = iter.next()
-        currentSize += nextFile.size
-        filesToMerge += nextFile
+        if(nextFile.size < maxSize) {
+          currentSize += nextFile.size
+          filesToMerge += nextFile
+        }
       }
-      val leftFile = new Path(getFileName(filesToMerge.head))
-      val tailFiles = filesToMerge.tail.map(x => new Path(getFileName(x))).toArray
-      hdfs.concat(leftFile, tailFiles)
+      val leftFile = new Path(getFileName(first))
+      val tailFiles = filesToMerge.map(x => new Path(getFileName(x))).toArray
+      if(tailFiles.length > 0) {
+        hdfs.concat(leftFile, tailFiles)
+      }
     }
   }
 
