@@ -4,3 +4,5 @@ val list = Cons("Dam", Cons("ia", Cons("n", Nil)))
 
 
 val withoutDam = List.tail(list)
+
+val chanedHead = List.setHead(list, "K")

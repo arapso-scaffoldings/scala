@@ -28,6 +28,15 @@ object List {
     case Cons(head, tail) => tail
   }
 
+  def setHead[A](ds: List[A], newHead: A): List[A] = ds match {
+    case Nil => Nil
+    case Cons(head, tail) => Cons(newHead, tail)
+  }
+
+  def drop[A](ds: List[A], n: Int): List[A] = ds match {
+    case Nil => Nil
+    case Cons(head, tail) => drop(tail, n - 1)
+  }
 }
 
 
