@@ -1,49 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.arapso.scaffoldings</groupId>
-  <artifactId>scala</artifactId>
+  <artifactId>scala-maven</artifactId>
   <version>0.1-SNAPSHOT</version>
   <name>${project.artifactId}</name>
   <description>My wonderfull scala app</description>
   <inceptionYear>2010</inceptionYear>
 
-    <dependencies>
-      <dependency>
+  <dependencies>
+    <dependency>
         <groupId>org.scala-lang</groupId>
         <artifactId>scala-library</artifactId>
-        <version>2.12.0</version>
+        <version>2.11.8</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.avro</groupId>
-        <artifactId>avro</artifactId>
-        <version>1.8.1</version>
+          <groupId>com.typesafe.akka</groupId>
+          <artifactId>akka-actor_2.11</artifactId>
+          <version>2.4.17</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.avro</groupId>
-        <artifactId>avro-mapred</artifactId>
-        <version>1.8.1</version>
+          <groupId>io.spray</groupId>
+          <artifactId>spray-json_2.11</artifactId>
+          <version>1.3.3</version>
       </dependency>
-      <dependency>
-        <groupId>org.apache.avro</groupId>
-        <artifactId>avro-tools</artifactId>
-        <version>1.8.1</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sksamuel.avro4s</groupId>
-        <artifactId>avro4s-core_2.11</artifactId>
-        <version>1.6.2</version>
-      </dependency>
-      <dependency>
-        <groupId>pl.roqad.platform.common</groupId>
-        <artifactId>common-data</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.spark</groupId>
-        <artifactId>spark-core_2.11</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-    </dependencies>
+  </dependencies>
     <build>
       <plugins>
         <plugin>
@@ -59,7 +39,7 @@
             </execution>
           </executions>
           <configuration>
-            <sourceDir>src/main/java</sourceDir>
+            <sourceDir>src/main/scala</sourceDir>
             <jvmArgs>
               <jvmArg>-Xms64m</jvmArg>
               <jvmArg>-Xmx1024m</jvmArg>
