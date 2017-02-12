@@ -1,7 +1,7 @@
 package pl.arapso.kafka
 
 import akka.actor.Actor
-import com.google.gson.{Gson, JsonParser}
+import spray.json._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
@@ -23,16 +23,13 @@ class Accountant extends Actor {
   override def receive: Receive = {
     case Event(line) => {
       totalAmount += 1
-      lastBidId = getBidId(line)
+      val jsonAst = line.parseJson
+      val map = jsonAst.asJsObject().getFields("bidId")
+      lastBidId = map(0).toString()
     }
     case Tick(i) => {
       println(s"Accountant have $totalAmount messages with last BidId $lastBidId")
       context.system.scheduler.scheduleOnce(reportDuration, self, Tick(i + 1))
     }
-  }
-
-  def getBidId(line: String): String = {
-    val jsonAst = new JsonParser().parse(line)
-    jsonAst.getAsJsonObject.get("bidId").getAsString
   }
 }
