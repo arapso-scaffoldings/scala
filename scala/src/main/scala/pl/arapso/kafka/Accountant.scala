@@ -1,8 +1,7 @@
 package pl.arapso.kafka
 
 import akka.actor.Actor
-import spray.json._
-
+import net.liftweb.json._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 
@@ -23,9 +22,9 @@ class Accountant extends Actor {
   override def receive: Receive = {
     case Event(line) => {
       totalAmount += 1
-      val jsonAst = line.parseJson
-      val map = jsonAst.asJsObject().getFields("bidId")
-      lastBidId = map(0).toString()
+      val jsonAst = parse(line)
+      val map = (jsonAst \\ "bidId").values
+      lastBidId = map.get("bidId").getOrElse("").toString
     }
     case Tick(i) => {
       println(s"Accountant have $totalAmount messages with last BidId $lastBidId")
