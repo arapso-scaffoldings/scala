@@ -1,5 +1,5 @@
 import net.liftweb.json._
-import pl.arapso.kafka.Event
+import pl.arapso.scaffoldings.scala.kafka.model.Event
 implicit val formats = DefaultFormats
 
 case class Person(firstName: String, lastName: String)

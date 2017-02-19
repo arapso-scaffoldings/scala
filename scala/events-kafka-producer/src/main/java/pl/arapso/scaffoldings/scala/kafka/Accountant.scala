@@ -1,8 +1,8 @@
-package pl.arapso.kafka
+package pl.arapso.scaffoldings.scala.kafka
 
 import akka.actor.Actor
 import net.liftweb.json._
-import pl.arapso.kafka.model.Event
+import pl.arapso.scaffoldings.scala.kafka.model.Event
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._

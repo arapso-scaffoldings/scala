@@ -1,4 +1,4 @@
-package pl.arapso
+package pl.arapso.scala
 
 object ScalaApplication {
 

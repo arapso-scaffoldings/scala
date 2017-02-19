@@ -1,8 +1,9 @@
-package pl.arapso.kafka
+package pl.arapso.scaffoldings.scala.kafka
 
 import akka.actor.Actor
-import scala.concurrent.duration._
+
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 
 
 class EventsCounter extends Actor {

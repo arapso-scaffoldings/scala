@@ -1,4 +1,4 @@
-package pl.arapso.kafka.model
+package pl.arapso.scaffoldings.scala.kafka.model
 
 case class Bid(currency: String, price: Double)
 

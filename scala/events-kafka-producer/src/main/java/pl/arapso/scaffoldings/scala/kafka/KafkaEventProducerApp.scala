@@ -1,4 +1,4 @@
-package pl.arapso.kafka
+package pl.arapso.scaffoldings.scala.kafka
 
 import akka.actor.{ActorSystem, Props}
 import akka.kafka.ProducerSettings
@@ -9,6 +9,7 @@ import akka.stream.actor.ActorPublisherMessage.Request
 import akka.stream.scaladsl.Source
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{ByteArraySerializer, StringSerializer}
+
 
 object KafkaEventProducerApp {
 

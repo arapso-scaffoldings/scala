@@ -1,6 +1,7 @@
-package pl.arapso.kafka
+package pl.arapso.scaffoldings.scala.kafka
 
 import java.nio.file.Path
+
 import akka.actor.Actor
 
 /**

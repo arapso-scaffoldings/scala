@@ -1,12 +1,12 @@
-package pl.arapso.kafka
+package pl.arapso.scaffoldings.scala.kafka
 
 import java.nio.file.Path
 
 import akka.actor.{Actor, ActorRef}
 
 import scala.collection.mutable.ListBuffer
-import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 
 case class Register(actor: ActorRef)
 
