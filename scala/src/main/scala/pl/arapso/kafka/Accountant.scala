@@ -5,7 +5,11 @@ import net.liftweb.json._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 
+case class Bid(currency: String, price: Double)
+case class Event(bidId: String, bid: Bid)
+
 class Accountant extends Actor {
+  implicit val formats = DefaultFormats
 
   case class AccountantEvent(bidId: String)
 
@@ -15,19 +19,19 @@ class Accountant extends Actor {
 
   context.system.scheduler.scheduleOnce(reportDuration, self, Tick(1))
 
+  var eventsNo: Long = 0l
   var totalAmount: Double = 0d
-
   var lastBidId: String = ""
 
   override def receive: Receive = {
-    case Event(line) => {
-      totalAmount += 1
-      val jsonAst = parse(line)
-      val map = (jsonAst \\ "bidId").values
-      lastBidId = map.get("bidId").getOrElse("").toString
+    case EventMessage(line) => {
+      val event = parse(line).extract[Event]
+      lastBidId = event.bidId
+      totalAmount += event.bid.price
+      eventsNo += 1
     }
     case Tick(i) => {
-      println(s"Accountant have $totalAmount messages with last BidId $lastBidId")
+      println(s"Accountant have processed $eventsNo [sum=$totalAmount,lasatBidId=$lastBidId]")
       context.system.scheduler.scheduleOnce(reportDuration, self, Tick(i + 1))
     }
   }

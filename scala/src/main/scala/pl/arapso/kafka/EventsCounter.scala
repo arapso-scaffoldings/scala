@@ -14,7 +14,7 @@ class EventsCounter extends Actor {
   var eventsNo = 0
 
   override def receive: Receive = {
-    case Event(line) =>
+    case EventMessage(line) =>
       eventsNo += 1
     case Tick(i) =>
       println(s"Events no $eventsNo")

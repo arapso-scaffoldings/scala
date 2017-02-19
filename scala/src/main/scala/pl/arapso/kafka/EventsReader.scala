@@ -36,7 +36,7 @@ class EventsReader extends Actor {
       scala.io.Source.fromFile(filePath.toFile).getLines().foreach(line => {
         readLines += 1
         actors.foreach(a => {
-          a ! Event(line)
+          a ! EventMessage(line)
         })
       })
     }
