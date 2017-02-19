@@ -2,11 +2,10 @@ package pl.arapso.kafka
 
 import akka.actor.Actor
 import net.liftweb.json._
+import pl.arapso.kafka.model.Event
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
-
-case class Bid(currency: String, price: Double)
-case class Event(bidId: String, bid: Bid)
 
 class Accountant extends Actor {
   implicit val formats = DefaultFormats
@@ -30,6 +29,7 @@ class Accountant extends Actor {
       totalAmount += event.bid.price
       eventsNo += 1
     }
+
     case Tick(i) => {
       println(s"Accountant have processed $eventsNo [sum=$totalAmount,lasatBidId=$lastBidId]")
       context.system.scheduler.scheduleOnce(reportDuration, self, Tick(i + 1))

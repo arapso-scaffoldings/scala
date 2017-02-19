@@ -10,8 +10,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 case class Register(actor: ActorRef)
 
-
-
 /**
   * Read logs line and send it do registered actors
   *

@@ -16,6 +16,5 @@ class FileLinesCounter() extends Actor {
   override def receive: Receive = {
     case IncomingFile(path) =>
       linesNo += read(path)
-      println(s"$linesNo Lines read after process $path")
   }
 }
