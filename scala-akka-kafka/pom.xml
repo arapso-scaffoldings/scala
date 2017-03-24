@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.arapso.scaffoldings</groupId>
-    <artifactId>scala-kafka-example</artifactId>
+    <artifactId>scala-akka-kafka</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <modules>
@@ -10,8 +10,8 @@
         <module>events-kafka-consumer</module>
     </modules>
     <name>${project.artifactId}</name>
-    <description>My wonderfull scala app</description>
-    <inceptionYear>2010</inceptionYear>
+    <description>Scala Akka Streams Kafka Scaffolding</description>
+    <inceptionYear>2017</inceptionYear>
 
     <dependencies>
         <dependency>
