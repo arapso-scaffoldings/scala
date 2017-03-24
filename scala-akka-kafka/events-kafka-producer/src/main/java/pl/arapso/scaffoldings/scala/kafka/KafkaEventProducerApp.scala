@@ -10,7 +10,6 @@ import akka.stream.scaladsl.Source
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{ByteArraySerializer, StringSerializer}
 
-
 object KafkaEventProducerApp {
 
   def main(args: Array[String]): Unit = {
