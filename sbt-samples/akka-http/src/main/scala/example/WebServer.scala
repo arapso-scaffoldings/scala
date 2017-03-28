@@ -1,13 +1,16 @@
 package example
 
-import java.time.LocalDate
+import java.time.{LocalDate, Period}
+import java.time.temporal.ChronoUnit
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.stream.ActorMaterializer
 import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.unmarshalling.Unmarshaller
 
+import scala.concurrent.Future
 import scala.io.StdIn
 
 object WebServer {
@@ -18,17 +21,22 @@ object WebServer {
     // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.dispatcher
 
-    val route =
+    def route = {
+      implicit val localDateUnmarshaller = Unmarshaller[String, LocalDate] { ex => str =>
+        Future {
+          LocalDate.parse(str)
+        }
+      }
+
       path("hello") {
         get {
-          parameters('fromDate.as[LocalDate] ? LocalDate.now()) { fromDate =>
+          parameters('fromDate.as[LocalDate], 'toDate.as[LocalDate]) { (fromDate, toDate) =>
             complete(HttpEntity(ContentTypes.`text/html(UTF-8)`,
-            <h1>
-              Say hello from akka-http to {fromDate}
-            </h1>.toString()))
+              <h1>{fromDate} - {toDate}</h1>.toString()))
           }
         }
       }
+    }
 
     val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
 
