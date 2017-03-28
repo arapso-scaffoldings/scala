@@ -1,4 +1,4 @@
-import Dependencies.{akkaHttp, _}
+import Dependencies._
 
 lazy val helloWorld = (project in file("scala-hello-world")).
   settings(
@@ -11,7 +11,7 @@ lazy val helloWorld = (project in file("scala-hello-world")).
     libraryDependencies += scalaTest % Test
   )
 
-lazy val akkaHttp = (project in file("akka-http")).
+lazy val akkaHttpProject = (project in file("akka-http")).
   settings(
     inThisBuild(List(
       organization := "com.example",
