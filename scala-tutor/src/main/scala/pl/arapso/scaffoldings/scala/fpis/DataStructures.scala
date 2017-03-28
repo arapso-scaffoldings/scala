@@ -1,4 +1,4 @@
-package pl.arapso.scaffoldings.scala.tutor.fpis
+package pl.arapso.scaffoldings.scala.custom.fpis
 
 
 sealed trait List[+A]
