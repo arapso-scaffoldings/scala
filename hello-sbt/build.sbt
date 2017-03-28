@@ -1,4 +1,4 @@
-import Dependencies._
+import Dependencies.{akkaHttp, _}
 
 lazy val root = (project in file(".")).
   settings(
@@ -9,4 +9,4 @@ lazy val root = (project in file(".")).
     )),
     name := "Hello",
     libraryDependencies += scalaTest % Test
-  )
+  ).settings(libraryDependencies ++= akkaHttp)
