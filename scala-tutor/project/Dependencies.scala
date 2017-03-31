@@ -16,6 +16,12 @@ object Dependencies {
     )
   }
 
+  val swing = {
+    Seq(
+      "org.scala-lang" % "scala-swing" % "2.11.0-M7"
+    )
+  }
+
   val akka = {
     Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaVersion,
