@@ -25,3 +25,16 @@ lazy val fpis = (project in file("fpis")).
     libraryDependencies ++= spark,
     libraryDependencies ++= swing
   )
+
+
+lazy val akka = (project in file("akka")).
+  settings(
+    inThisBuild(List(
+      organization := "com.example",
+      scalaVersion := "2.11.8",
+      version      := "0.1.0-SNAPSHOT"
+    )),
+    name := "AkkaFramework",
+    libraryDependencies += scalaTest % Test,
+    libraryDependencies ++= akkaHttp
+  )
