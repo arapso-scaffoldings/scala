@@ -1,6 +1,6 @@
 package pl.arapso.scaffoldings.scala.custom.dates
 
-import java.time.LocalDate
+import java.time.{LocalDate, Period}
 import java.time.temporal.ChronoUnit.DAYS
 
 
@@ -37,11 +37,27 @@ object DatesSplitterExample extends App {
     Stream.from(1).takeWhile(_ < 10)
   }
 
-  val startDate = LocalDate.parse("2017-02-01")
-  val endDate = LocalDate.parse("2017-03-02")
+  def method5(startDate: LocalDate, endDate: LocalDate) = {
+    val period = Period.ofDays(7)
+    method5Worker(startDate, endDate, period)
+  }
 
-  method1(startDate, endDate).foreach(println)
-  method2(startDate, endDate).foreach(println)
-  method3(startDate, endDate).foreach(println)
-  method4(startDate, endDate).foreach(println)
+
+
+  def method5Worker(startDate: LocalDate, endDate: LocalDate, period: Period): List[(LocalDate, LocalDate)] = {
+    if(startDate.plusDays(period.getDays).isAfter(endDate)) {
+      List((startDate, endDate))
+    } else {
+      List((startDate, startDate.plusDays(period.getDays - 1))) ::: method5Worker(startDate.plusDays(period.getDays), endDate, period)
+    }
+  }
+
+  val startDate = LocalDate.parse("2017-02-01")
+  val endDate = LocalDate.parse("2017-01-28")
+
+  //method1(startDate, endDate).foreach(println)
+  //method2(startDate, endDate).foreach(println)
+  //method3(startDate, endDate).foreach(println)
+  //method4(startDate, endDate).foreach(println)
+  method5(startDate, endDate).foreach(println)
 }
