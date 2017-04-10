@@ -1,24 +1,21 @@
 package example
 
-import java.time.{LocalDate, Period}
-import java.time.temporal.ChronoUnit
+import java.time.LocalDate
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
-import akka.stream.ActorMaterializer
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.unmarshalling.Unmarshaller
+import akka.stream.ActorMaterializer
 
 import scala.concurrent.Future
 import scala.io.StdIn
 
 object WebServer {
   def main(args: Array[String]) {
-
     implicit val system = ActorSystem("my-system")
     implicit val materializer = ActorMaterializer()
-    // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.dispatcher
 
     def route = {
