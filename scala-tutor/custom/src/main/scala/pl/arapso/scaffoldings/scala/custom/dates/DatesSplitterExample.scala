@@ -42,8 +42,6 @@ object DatesSplitterExample extends App {
     method5Worker(startDate, endDate, period)
   }
 
-
-
   def method5Worker(startDate: LocalDate, endDate: LocalDate, period: Period): List[(LocalDate, LocalDate)] = {
     if(startDate.plusDays(period.getDays).isAfter(endDate)) {
       List((startDate, endDate))
@@ -55,9 +53,9 @@ object DatesSplitterExample extends App {
   val startDate = LocalDate.parse("2017-02-01")
   val endDate = LocalDate.parse("2017-01-28")
 
-  //method1(startDate, endDate).foreach(println)
-  //method2(startDate, endDate).foreach(println)
-  //method3(startDate, endDate).foreach(println)
-  //method4(startDate, endDate).foreach(println)
+  method1(startDate, endDate).foreach(println)
+  method2(startDate, endDate).foreach(println)
+  method3(startDate, endDate).foreach(println)
+  method4(startDate, endDate).foreach(println)
   method5(startDate, endDate).foreach(println)
 }
