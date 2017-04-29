@@ -1,13 +1,14 @@
 package objsets
 
 import org.scalatest.FunSuite
-
-
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
+import scala.collection.mutable.ListBuffer
+
 @RunWith(classOf[JUnitRunner])
 class TweetSetSuite extends FunSuite {
+
   trait TestSets {
     val set1 = new Empty
     val set2 = set1.incl(new Tweet("a", "a body", 20))
@@ -19,13 +20,13 @@ class TweetSetSuite extends FunSuite {
     val set5 = set4c.incl(d)
   }
 
-  def asSet(tweets: TweetSet): Set[Tweet] = {
-    var res = Set[Tweet]()
+  def asList(tweets: TweetSet): ListBuffer[Tweet] = {
+    var res = ListBuffer[Tweet]()
     tweets.foreach(res += _)
     res
   }
 
-  def size(set: TweetSet): Int = asSet(set).size
+  def size(set: TweetSet): Int = asList(set).size
 
   test("filter: on empty set") {
     new TestSets {
@@ -71,4 +72,9 @@ class TweetSetSuite extends FunSuite {
     }
   }
 
+  test("should split string by whitespaces") {
+    val testString = "asd sd fasfa asd"
+    assert(testString.split("\\s+").length == 4)
   }
+
+}
