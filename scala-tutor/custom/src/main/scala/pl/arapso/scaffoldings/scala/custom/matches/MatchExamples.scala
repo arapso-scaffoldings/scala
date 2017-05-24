@@ -5,7 +5,7 @@ package pl.arapso.scaffoldings.scala.custom.matches
   */
 object MatchExamples {
 
-  def main(args: Array[String]) {
+  def regexMatchExample = {
     val matchedExample = "ips-00001.txt"
     val unmachedExample = "asd=-asd.txt"
 
@@ -20,5 +20,10 @@ object MatchExamples {
     println(getFileNo(matchedExample))
     println(getFileNo(unmachedExample))
   }
+
+  def main(args: Array[String]) {
+
+  }
+
 
 }
