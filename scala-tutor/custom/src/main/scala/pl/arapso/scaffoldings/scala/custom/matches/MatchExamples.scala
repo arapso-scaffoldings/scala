@@ -21,8 +21,20 @@ object MatchExamples {
     println(getFileNo(unmachedExample))
   }
 
-  def main(args: Array[String]) {
 
+  def listExtractorExample = {
+
+    val list = List("damian", "edek", "krzysiek", "ela", "jola", "franek")
+
+    list match {
+      case _ :: "edek" :: elem :: x => println(elem)
+      case _ => println("No match")
+    }
+
+  }
+
+  def main(args: Array[String]) {
+    listExtractorExample
   }
 
 
