@@ -57,4 +57,12 @@ object Dependencies {
       "com.typesafe.akka" %% "akka-http-xml" % akkaHttpVersion
     )
   } ++ akka
+
+
+  val redis = {
+    val redisV = "1.6.0"
+    Seq(
+      "com.github.etaty" %% "rediscala" % redisV exclude("com.typesafe.akka", "akka-actor_2.11")
+    )
+  }
 }

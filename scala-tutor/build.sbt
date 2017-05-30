@@ -36,5 +36,6 @@ lazy val akka = (project in file("akka")).
     )),
     name := "AkkaFramework",
     libraryDependencies += scalaTest % Test,
-    libraryDependencies ++= akkaHttp
+    libraryDependencies ++= akkaHttp,
+    libraryDependencies ++= redis
   )

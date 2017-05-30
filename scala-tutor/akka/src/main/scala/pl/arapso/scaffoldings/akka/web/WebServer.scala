@@ -1,6 +1,7 @@
+package pl.arapso.scaffoldings.akka.web
+
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.MediaType
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 
