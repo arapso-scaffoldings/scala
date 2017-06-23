@@ -1,4 +1,4 @@
-package pl.arapso.scaffoldings.scala.custom
+package pl.arapso.scaffoldings.scala.custom.collections
 
 /**
   * Created by damian0o on 09.12.16.
