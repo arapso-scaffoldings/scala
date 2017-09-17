@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1"
+  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
 
   private[this] val akkaVersion = "2.4.17"
   private[this] val akkaHttpVersion = "10.0.5"
@@ -63,6 +63,17 @@ object Dependencies {
     val redisV = "1.6.0"
     Seq(
       "com.github.etaty" %% "rediscala" % redisV exclude("com.typesafe.akka", "akka-actor_2.11")
+    )
+  }
+
+  val monix = {
+    val monixV = "2.3.0"
+    Seq(
+      "io.monix" %% "monix" % monixV,
+      "io.monix" %% "monix-types" % monixV,
+      "io.monix" %% "monix-execution" % monixV,
+      "io.monix" %% "monix-eval" % monixV,
+      "io.monix" %% "monix-reactive" % monixV
     )
   }
 }

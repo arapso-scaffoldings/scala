@@ -1,27 +1,31 @@
 import Dependencies._
 
+lazy val commonSettings = Seq(
+  organization := "pl.arapso.scaffoldings.scala",
+  version := "0.1.0-SNAPSHOT",
+  scalaVersion := "2.11.11"
+)
+
+lazy val root = (project in file("scala-examples")).
+  settings(
+    commonSettings,
+    name := "ScalaExamples"
+  )
+
 lazy val custom = (project in file("custom")).
   settings(
-    inThisBuild(List(
-      organization := "com.example",
-      scalaVersion := "2.11.8",
-      version      := "0.1.0-SNAPSHOT"
-    )),
+    commonSettings,
     name := "CustomExamples",
-    libraryDependencies += scalaTest % Test,
+    libraryDependencies += scalaTest,
     libraryDependencies ++= spark,
     libraryDependencies ++= swing
   )
 
 lazy val fpis = (project in file("fpis")).
   settings(
-    inThisBuild(List(
-      organization := "com.example",
-      scalaVersion := "2.11.8",
-      version      := "0.1.0-SNAPSHOT"
-    )),
+    commonSettings,
     name := "FunctionalProgramingInScala",
-    libraryDependencies += scalaTest % Test,
+    libraryDependencies += scalaTest,
     libraryDependencies ++= spark,
     libraryDependencies ++= swing
   )
@@ -29,13 +33,16 @@ lazy val fpis = (project in file("fpis")).
 
 lazy val akka = (project in file("akka")).
   settings(
-    inThisBuild(List(
-      organization := "com.example",
-      scalaVersion := "2.11.8",
-      version      := "0.1.0-SNAPSHOT"
-    )),
+    commonSettings,
     name := "AkkaFramework",
-    libraryDependencies += scalaTest % Test,
+    libraryDependencies += scalaTest,
     libraryDependencies ++= akkaHttp,
     libraryDependencies ++= redis
+  )
+
+lazy val monix = (project in file("monix")).
+  settings(
+    commonSettings,
+    name := "MonixExamples",
+    libraryDependencies += scalaTest
   )
