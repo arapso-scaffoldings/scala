@@ -2,13 +2,12 @@ package pl.arapso.scaffoldings.akka.redis
 
 import java.nio.file.{Path, Paths}
 
-import akka.{Done, NotUsed}
+import akka.NotUsed
 import akka.actor.ActorSystem
-import akka.stream.ActorMaterializer
-import akka.stream.scaladsl.{FileIO, Flow, Framing, GraphDSL, Sink, Source}
+import akka.stream.scaladsl.{FileIO, Flow, Framing, GraphDSL, RunnableGraph, Sink, Source}
+import akka.stream.{ActorMaterializer, ClosedShape}
 import akka.util.ByteString
 import redis.RedisClient
-import akka.stream.scaladsl.GraphDSL
 
 object RedisClientExample {
 
@@ -19,7 +18,6 @@ object RedisClientExample {
     case class ProcessorResult(path: Path)
     implicit val system = ActorSystem()
     implicit val materlialize = ActorMaterializer()
-    import system.dispatcher
 
 
     val redis = RedisClient()

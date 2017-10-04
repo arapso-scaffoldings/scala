@@ -9,27 +9,7 @@ import pl.arapso.scaffoldings.scala.custom.dates.DatesSplitterExample._
   * Test class for Dates Slitter Examples Method
   */
 class DatesSplitterExampleTest extends FlatSpec with Matchers {
-
-  type Input = (LocalDate, LocalDate) => List[DatesInterval]
-
-  private def commonBase(input: Input) = {
-    val startDate = LocalDate.of(2017, 8, 1)
-    val endData = LocalDate.of(2017, 8, 31)
-
-    val result = input(startDate, endData)
-
-    result should {
-      have length 5 and
-      contain theSameElementsInOrderAs List(
-        (LocalDate.of(2017, 8, 1), LocalDate.of(2017, 8, 7)),
-        (LocalDate.of(2017, 8, 8), LocalDate.of(2017, 8, 14)),
-        (LocalDate.of(2017, 8, 15), LocalDate.of(2017, 8, 21)),
-        (LocalDate.of(2017, 8, 22), LocalDate.of(2017, 8, 28)),
-        (LocalDate.of(2017, 8, 29), LocalDate.of(2017, 8, 31))
-      )
-    }
-  }
-
+  type Input = (LocalDate, LocalDate) => List[Any]
 
   behavior of "Sliding method"
 
@@ -59,6 +39,24 @@ class DatesSplitterExampleTest extends FlatSpec with Matchers {
 
   it should "generate intervals with iterator method" in {
     commonBase(DatesSplitterExample.iterateThrowDays)
+  }
+
+  private def commonBase(input: Input) = {
+    val startDate = LocalDate.of(2017, 8, 1)
+    val endData = LocalDate.of(2017, 8, 31)
+
+    val result = input(startDate, endData)
+
+    result should {
+      have length 5 and
+        contain theSameElementsInOrderAs List(
+        (LocalDate.of(2017, 8, 1), LocalDate.of(2017, 8, 7)),
+        (LocalDate.of(2017, 8, 8), LocalDate.of(2017, 8, 14)),
+        (LocalDate.of(2017, 8, 15), LocalDate.of(2017, 8, 21)),
+        (LocalDate.of(2017, 8, 22), LocalDate.of(2017, 8, 28)),
+        (LocalDate.of(2017, 8, 29), LocalDate.of(2017, 8, 31))
+      )
+    }
   }
 
 }

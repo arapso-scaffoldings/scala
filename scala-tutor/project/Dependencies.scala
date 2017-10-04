@@ -76,4 +76,18 @@ object Dependencies {
       "io.monix" %% "monix-reactive" % monixV
     )
   }
+
+  val cats = {
+    val catsV = "1.0.0-MF"
+    val catsEffectsV = "0.4"
+    Seq(
+      "org.typelevel" %% "cats-core" % catsV,
+      "org.typelevel" %% "cats-kernel" % catsV,
+      "org.typelevel" %% "cats-macros" % catsV,
+      "org.typelevel" %% "cats-laws" % catsV,
+      "org.typelevel" %% "cats-free" % catsV,
+      "org.typelevel" %% "cats-testkit" % catsV,
+      "org.typelevel" %% "cats-effect" % catsEffectsV
+    )
+  }
 }

@@ -18,7 +18,8 @@ lazy val custom = (project in file("custom")).
     name := "CustomExamples",
     libraryDependencies += scalaTest,
     libraryDependencies ++= spark,
-    libraryDependencies ++= swing
+    libraryDependencies ++= swing,
+    libraryDependencies ++= cats
   )
 
 lazy val fpis = (project in file("fpis")).
@@ -40,9 +41,10 @@ lazy val akka = (project in file("akka")).
     libraryDependencies ++= redis
   )
 
-lazy val monix = (project in file("monix")).
+lazy val monixExamples = (project in file("monix")).
   settings(
     commonSettings,
     name := "MonixExamples",
-    libraryDependencies += scalaTest
+    libraryDependencies += scalaTest,
+    libraryDependencies ++= monix
   )
